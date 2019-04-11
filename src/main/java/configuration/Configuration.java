@@ -52,31 +52,59 @@ public class Configuration implements IConfiguration {
                 }
             }
         }
-        return null;
+        return result;
     }
 
-    private List<String> loadMessage(String s) {
-        return null;
+    private List<String> loadMessage(String fileName) throws IOException {
+
+        List<String> result;
+        try(FileInputStream inp = new FileInputStream(fileName)) {
+            InputStreamReader isr = new InputStreamReader(inp, "UTF-8");
+            try(BufferedReader reader = new BufferedReader(isr)) {
+                result = new ArrayList<>();
+                String line = reader.readLine();
+
+                while (line != null) {
+                    StringBuilder body = new StringBuilder();
+                    while ((line != null) && (!line.equals("=="))) {
+                        body.append(line);
+                        body.append("\r\n");
+                        line = reader.readLine();
+                    }
+                    result.add(body.toString());
+                    line = reader.readLine();
+                }
+            }
+        }
+        return result;
     }
 
-
+    
     @Override
     public List<String> getMessages() {
-        return null;
+        return messages;
     }
 
     @Override
     public int getNombreGroupes() {
-        return 0;
+        return numberOfGroups;
     }
 
     @Override
     public List<Personne> getVictimes() {
-        return null;
+        return victimes;
     }
 
     @Override
     public List<Personne> getVictimesCC() {
-        return null;
+        return victimesCC;
+    }
+
+    public String getServerAddress() {
+        return serverAddress;
+    }
+
+    public int getServerPort() {
+        return serverPort;
     }
 }
