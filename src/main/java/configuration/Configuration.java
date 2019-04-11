@@ -17,9 +17,9 @@ public class Configuration implements IConfiguration {
 
 
     public Configuration() throws IOException{
-        victimes = loadAdresse("./config/victimes.utf8");
-        messages = loadMessage("./config/messages.utf8");
-        loadProperties("./config/config.properties");
+        victimes = loadAdresse("src/main/java/configuration/config/victimes.utf8");
+        messages = loadMessage("src/main/java/configuration/config/messages.utf8");
+        loadProperties("src/main/java/configuration/config/config.properties");
     }
 
     private void loadProperties(String fileName) throws IOException {

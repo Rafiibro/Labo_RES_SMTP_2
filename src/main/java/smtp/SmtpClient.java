@@ -35,7 +35,7 @@ public class SmtpClient implements ISmtpClient{
     LOG.info(line);
     writer.println("EHLO localhost\r\n");
     line = reader.readLine();
-    if (line.startsWith("250")){
+    if (!line.startsWith("250")){
 
         throw new IOException("SMTP error: " + line);
 
@@ -46,7 +46,7 @@ public class SmtpClient implements ISmtpClient{
         LOG.info(line);
     }
 
-    writer.write("MAIL FROM");
+    writer.write("MAIL FROM:");
     writer.write(message.getFrom());
     writer.write("\r\n");
     writer.flush();
