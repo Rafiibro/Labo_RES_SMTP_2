@@ -34,6 +34,8 @@ public class SmtpClient implements ISmtpClient{
     String line = reader.readLine();
     LOG.info(line);
     writer.println("EHLO localhost\r\n");
+    LOG.info("EHLO localhost\r\n");
+    writer.flush();
     line = reader.readLine();
     if (!line.startsWith("250")){
 
@@ -46,9 +48,9 @@ public class SmtpClient implements ISmtpClient{
         LOG.info(line);
     }
 
-    writer.write("MAIL FROM:");
-    writer.write(message.getFrom());
-    writer.write("\r\n");
+    String mailFrom = "MAIL FROM: " + "<" + message.getFrom() + ">" + " \r\n";
+    writer.write(mailFrom);
+    LOG.info(mailFrom);
     writer.flush();
     line = reader.readLine();
     LOG.info(line);

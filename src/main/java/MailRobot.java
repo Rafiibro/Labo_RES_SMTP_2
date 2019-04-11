@@ -19,10 +19,8 @@ public class MailRobot {
             for (Prank prank: pranksList) {
                 smtp.sendMail(prank.genererMail());
             }
-
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 }
