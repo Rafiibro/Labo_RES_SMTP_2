@@ -1,8 +1,9 @@
 package smtp;
 
-import static org.junit.Assert.*;
+import org.junit.jupiter.api.Test;
 
-@RunWith(Arquillian.class)
+import static org.junit.jupiter.api.Assertions.*;
+
 public class SmtpClientTest {
 
 }

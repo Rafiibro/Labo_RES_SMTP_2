@@ -52,10 +52,31 @@ public class Configuration implements IConfiguration {
                 }
             }
         }
+        return null;
     }
 
     private List<String> loadMessage(String s) {
+        return null;
     }
 
 
+    @Override
+    public List<String> getMessages() {
+        return null;
+    }
+
+    @Override
+    public int getNombreGroupes() {
+        return 0;
+    }
+
+    @Override
+    public List<Personne> getVictimes() {
+        return null;
+    }
+
+    @Override
+    public List<Personne> getVictimesCC() {
+        return null;
+    }
 }
