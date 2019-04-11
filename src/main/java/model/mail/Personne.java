@@ -15,10 +15,9 @@ public class Personne {
     public Personne(String adresse) {
         this.adresse = adresse;
 
-        String[] tab = adresse.split(".");
-        this.prenom = tab[0];
-        tab = tab[1].split("@");
-        this.nom = tab[0];
+        String[] parts = adresse.split("[.@]+");
+        this.prenom = parts[0];
+        this.nom = parts[1];
     }
 
     public String getPrenom() {

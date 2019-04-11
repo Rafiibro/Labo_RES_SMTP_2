@@ -29,7 +29,7 @@ public class PrankGenerator {
         int nombreGroupes = configurationManager.getNombreGroupes();
         int nombreVictimes = configurationManager.getVictimes().size();
 
-        if (nombreVictimes / nombreGroupes< 3) {
+        if (nombreVictimes / nombreGroupes < 3) {
             nombreGroupes = nombreVictimes / 3;
             LOG.warning("Pas assez de victimes pour avoir ce nombre de groupe, on ne peut seulement generer " + nombreGroupes + "groupes avec ces victimes");
         }
