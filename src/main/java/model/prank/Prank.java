@@ -13,6 +13,7 @@ public class Prank {
     private final List<Personne> victimeTo= new ArrayList<>();
     private final List<Personne> victimeCC= new ArrayList<>();
     private String message;
+    private String sujet;
 
 
     public Personne getEnvoyeur() {
@@ -51,6 +52,8 @@ public class Prank {
     public Message genererMail() {
         Message message = new Message();
 
+        message.setSujet(sujet);
+
         message.setCorps(this.message + "\n\n" + envoyeur.getPrenom() + " " + envoyeur.getNom());
 
         String[] to = victimeTo.stream().map(p -> p.getAdresse()).collect(Collectors.toList()).toArray(new String[]{});
@@ -62,5 +65,9 @@ public class Prank {
         message.setFrom(envoyeur.getAdresse());
 
         return message;
+    }
+
+    public void setSujet(String sujet) {
+        this.sujet = sujet;
     }
 }

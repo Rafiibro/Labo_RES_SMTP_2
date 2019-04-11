@@ -11,7 +11,7 @@ public class MailRobot {
     public static void main(String[] args) {
         try {
             Configuration config = new Configuration();
-            List<Prank> pranksList = new ArrayList<>();
+            List<Prank> pranksList;
             PrankGenerator PG = new PrankGenerator(config);
             SmtpClient smtp = new SmtpClient(config.getServerAddress(), config.getServerPort());
             pranksList = PG.genererPranks();
