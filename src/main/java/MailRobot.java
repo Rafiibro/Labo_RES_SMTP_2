@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MailRobot {
+public class  MailRobot {
     public static void main(String[] args) {
         try {
             Configuration config = new Configuration();

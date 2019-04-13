@@ -1,3 +1,10 @@
+/**
+ * RES - LABO SMTP
+ * Authors: Da Cuhna Garcia Rafael, Edoardo Carpita
+ * File: Personne.java
+ *
+ */
+
 package model.mail;
 
 public class Personne {

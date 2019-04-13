@@ -1,3 +1,10 @@
+/**
+ * RES - LABO SMTP
+ * Authors: Da Cuhna Garcia Rafael, Edoardo Carpita
+ * File: Prank.java
+ *
+ */
+
 package model.prank;
 
 import model.mail.Message;
@@ -52,9 +59,10 @@ public class Prank {
     public Message genererMail() {
         Message message = new Message();
 
-        message.setSujet(sujet);
+        String[] messageParts = this.message.split("\r\n", 2);
+        message.setSujet(messageParts[0]);
 
-        message.setCorps(this.message + "\n\n" + envoyeur.getPrenom() + " " + envoyeur.getNom());
+        message.setCorps(messageParts[1] + "\n\n" + envoyeur.getPrenom() + " " + envoyeur.getNom());
 
         String[] to = victimeTo.stream().map(p -> p.getAdresse()).collect(Collectors.toList()).toArray(new String[]{});
         message.setTo(to);

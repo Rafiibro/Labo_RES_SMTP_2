@@ -1,3 +1,10 @@
+/**
+ * RES - LABO SMTP
+ * Authors: Da Cuhna Garcia Rafael, Edoardo Carpita
+ * File: PrankGenerator.java
+ *
+ */
+
 package smtp;
 
 import model.mail.Message;
@@ -28,102 +35,97 @@ public class SmtpClient implements ISmtpClient{
     @Override
     public void sendMail(Message message) throws IOException {
     LOG.info("Sending message via SMTP");
-    Socket socket = new Socket(smtpServerAdress,smtpServerPort);
+
+    socket = new Socket(smtpServerAdress,smtpServerPort);
     writer = new PrintWriter(new OutputStreamWriter(socket.getOutputStream(), "UTF-8"), true);
     reader = new BufferedReader(new InputStreamReader(socket.getInputStream(), "UTF-8"));
-    String line = reader.readLine();
-    LOG.info(line);
-    writer.println("EHLO localhost\r\n");
-    LOG.info("EHLO localhost\r\n");
-    writer.flush();
-    line = reader.readLine();
-    if (!line.startsWith("250")){
 
-        throw new IOException("SMTP error: " + line);
+    readResponse();
 
+    writeLine("EHLO localhost");
+
+
+    String contact = reader.readLine();
+    if (!contact.startsWith("250")){
+        throw new IOException("SMTP error: " + contact);
     }
 
-    while (line.startsWith("250-")) {
-        line = reader.readLine();
-        LOG.info(line);
+    while (contact.startsWith("250-")) {
+         contact = reader.readLine();
+         LOG.info(contact);
     }
 
-    String mailFrom = "MAIL FROM: " + "<" + message.getFrom() + ">" + " \r\n";
-    writer.write(mailFrom);
-    LOG.info(mailFrom);
-    writer.flush();
-    line = reader.readLine();
-    LOG.info(line);
+    writeLine("MAIL FROM: " + message.getFrom());
+    readResponse();
 
 
         for (String to : message.getTo()) {
-            writer.write("RCPT TO:");
-            writer.write(to);
-            writer.write("\r\n");
-            writer.flush();
-            line = reader.readLine();
-            LOG.info(line);
+            writeLine("RCPT TO: " + to);
+            readResponse();
         }
 
-        for (String to : message.getCc()) {
-            writer.write("CC TO:");
-            writer.write(to);
-            writer.write("\r\n");
-            writer.flush();
-            line = reader.readLine();
-            LOG.info(line);
-
+        for (String cc : message.getCc()) {
+            writeLine("RCPT TO: " + cc);
+            readResponse();
         }
 
-/*
-        for (String to : message.getBcc()) {
-            writer.write("RCPT TO:");
-            writer.write(to);
-            writer.write("\r\n");
-            writer.flush();
-            line = reader.readLine();
-            LOG.info(line);
-
+        for (String bcc : message.getBcc()) {
+            writeLine("RCPT TO:" + bcc);
+            readResponse();
         }
-*/
 
 
-        writer.write("DATA");
-        writer.write("\r\n");
-        writer.flush();
 
-        line = reader.readLine();
-        LOG.info(line);
+        writeLine("DATA");
+        readResponse();
 
-        writer.write("Content type: text/plain; charset=\" UTF-8 \" \r\n");
+        writeMessage(message);
+
+        writeLine(message.getCorps() + "\r\n" + "." + "\r\n");
+        readResponse();
+
+        writeLine("QUIT");
+
+        reader.close();
+        writer.close();
+        socket.close();
+   }
+
+
+
+   private void writeLine(String toWrite){
+       writer.write(toWrite);
+       writer.write("\r\n");
+       writer.flush();
+
+   }
+
+
+    private void writeMessage(Message message){
+
         writer.write("From: " + message.getFrom() + "\r\n");
 
-        writer.write("To: " + message.getTo() + "\r\n");
+        writer.write("To: " + message.getTo()[0]);
         for (int length = 1; length < message.getTo().length; length++){
             writer.write(", " + message.getTo()[length]);
         }
-        writer.write("\r\n");
 
-        writer.write("Cc: " + message.getCc() + "\r\n");
+        writer.write("\r\n");
+        writer.write("Cc: " + message.getCc()[0]);
         for (int length = 1; length < message.getCc().length; length++){
             writer.write(", " + message.getCc()[length]);
         }
         writer.write("\r\n");
+
+        writer.write(message.getSujet() + "\r\n");
+        writer.write("Content-Type: text/plain: charset=\"utf-8\"\r\n");
+
         writer.flush();
 
-        LOG.info(message.getCorps());
-        writer.write(message.getCorps());
-        writer.write("\r\n");
-        writer.write(".");
-        writer.write("\r\n");
-        writer.flush();
+    }
 
-        line = reader.readLine();
-        LOG.info(line);
-        writer.write("QUIT\r\n");
-        writer.flush();
-        reader.close();
-        writer.close();
-        socket.close();
+   private void readResponse() throws IOException {
+       String reply = reader.readLine();
+       LOG.info(reply);
    }
 }

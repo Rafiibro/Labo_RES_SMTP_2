@@ -1,9 +1,16 @@
+/**
+ * RES - LABO SMTP
+ * Authors: Da Cuhna Garcia Rafael, Edoardo Carpita
+ * File: Message.java
+ *
+ */
 package model.mail;
 
 public class Message {
     private String from;
     private String[] to = new String[0];
     private String[] cc = new String[0];
+    private String[] bcc = new String[0];
     private String sujet;
     private String corps;
 
@@ -46,5 +53,13 @@ public class Message {
 
     public void setCorps(String corps) {
         this.corps = corps;
+    }
+
+    public String[] getBcc() {
+        return bcc;
+    }
+
+    public void setBcc(String[] bcc) {
+        this.bcc = bcc;
     }
 }

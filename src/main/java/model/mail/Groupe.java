@@ -1,3 +1,10 @@
+/**
+ * RES - LABO SMTP
+ * Authors: Da Cuhna Garcia Rafael, Edoardo Carpita
+ * File: Groupe.java
+ *
+ */
+
 package model.mail;
 
 import java.util.ArrayList;

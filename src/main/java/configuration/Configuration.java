@@ -1,3 +1,10 @@
+/**
+ * RES - LABO SMTP
+ * Authors: Da Cuhna Garcia Rafael, Edoardo Carpita
+ * File: Configuration.java
+ *
+ */
+
 package configuration;
 
 import model.mail.Personne;
