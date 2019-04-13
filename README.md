@@ -8,11 +8,13 @@ This program create a client application (TCP) in Java to send fake email from a
 ### Prerequisite
 To test your fake email safely and without the risks of being blacklisted, we strongly advise yout to set up a fake SMTP server to send your fake emails. For our testing phase we used a simple email server mocker called MockMock. Mockmock is simple and freely available on GitHub and you will be able to test if outgoing emails are sent (without actually sending them) and to see what they look like. It provides a web interface that displays which emails were sent and shows you what the contents of those emails are. You can clone the repo MockMock at this link https://github.com/tweakers/MockMock.
 
-You have two ways to use MockMock in the /mockmock folder:
+You have two ways to use MockMock in the dkr/MockMock folder:
 
 #### Use the .jar directly
 
-Compile the program with maven and then use in a console the following command from the target directory :
+(You can use the .jar you find with this project or download it from github yourself, compile the program with maven )
+
+Use in a bash console the following command from the target directory :
 
 ```
 java -jar YourMockMockJarNameHere.jar -p 2525 -h 8282
