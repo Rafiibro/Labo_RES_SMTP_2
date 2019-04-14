@@ -3,7 +3,7 @@
 Your report MUST include the following sections:
 
 ### A brief description of the project:
-This program create a client application (TCP) in Java to send fake email from a list of victims. It will use the Socket API to communicate with a known SMTP server (address and port needed).
+This program create a client application (TCP) in Java to send fake email from a list of victims. It will use the Socket API to communicate with a known SMTP server (address and port needed) created with a mockmock server (https://github.com/tweakers/MockMock).
 
 ### Prerequisite
 To test your fake email safely and without the risks of being blacklisted, we strongly advise yout to set up a fake SMTP server to send your fake emails. For our testing phase we used a simple email server mocker called MockMock. Mockmock is simple and freely available on GitHub and you will be able to test if outgoing emails are sent (without actually sending them) and to see what they look like. It provides a web interface that displays which emails were sent and shows you what the contents of those emails are. You can clone the repo MockMock at this link https://github.com/tweakers/MockMock.
@@ -39,6 +39,12 @@ If your are familiar with the Docker Image system, we provide also a DOCKERFILE 
 
 ´´´
 
+#### Clear and simple instructions for configuring your tool and running a prank campaign. 
+
+
+To create your prank campaign, you will need to edit a couple of files so you create your own pranks. First of all :
+
+- 
 
 
 
