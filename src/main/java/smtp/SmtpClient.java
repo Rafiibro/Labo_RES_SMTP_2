@@ -43,6 +43,7 @@ public class SmtpClient implements ISmtpClient{
     readResponse();
 
     writeLine("EHLO localhost");
+    LOG.info("We write the command : EHLO localhost");
 
 
     String contact = reader.readLine();
@@ -55,34 +56,41 @@ public class SmtpClient implements ISmtpClient{
          LOG.info(contact);
     }
 
+    LOG.info("We write the command (adding sender) : MAIL FROM: " + message.getFrom());
     writeLine("MAIL FROM: " + message.getFrom());
     readResponse();
 
-
         for (String to : message.getTo()) {
+            LOG.info("We write the command (adding To victims) : RCPT TO: " + to);
             writeLine("RCPT TO: " + to);
             readResponse();
         }
 
         for (String cc : message.getCc()) {
+            LOG.info("We write the command (adding Cc victimes) : RCPT TO: " + cc);
             writeLine("RCPT TO: " + cc);
             readResponse();
         }
 
         for (String bcc : message.getBcc()) {
+            LOG.info("We write the command (adding Bcc victimes) : RCPT TO: " + bcc);
             writeLine("RCPT TO:" + bcc);
             readResponse();
         }
 
 
-
+        LOG.info("We write the command (Telling we are starting de message): DATA");
         writeLine("DATA");
         readResponse();
+
+        LOG.info("We write the message (too long to add it but you have an example before): ");
 
         writeMessage(message);
 
         writeLine(message.getCorps() + "\r\n" + "." + "\r\n");
         readResponse();
+
+        LOG.info("We write the command to quit the test: QUIT");
 
         writeLine("QUIT");
 
