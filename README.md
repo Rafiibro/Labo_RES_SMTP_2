@@ -44,7 +44,14 @@ If your are familiar with the Docker Image system, we provide also a DOCKERFILE 
 
 To create your prank campaign, you will need to edit a couple of files so you create your own pranks. First of all :
 
-- 
+- change the victimes file :
+add your own victimes, you only need to write the email address
+people are automatically create qith the email address
+- change the message file :
+create your message that is going to be insert ok the prank. you need to add a subject of the mail.
+- change the config properties file :
+adding your server address and your server port.
+
 
 
 
