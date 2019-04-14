@@ -144,3 +144,9 @@ And if we click on the mail :
 
 ![](images/output1.png)
 ![](images/rawoutput.png)
+
+#### Running mock mock server with docker
+
+when we run the mock mock server with docker and then run the programm on IntelliJ we can see that our docker receive the mails, example on the screen below : 
+
+![](images/dockerrun.png)
