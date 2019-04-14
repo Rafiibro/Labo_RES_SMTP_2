@@ -73,11 +73,11 @@ To create your prank campaign, you will need to edit a couple of files so you cr
 
 #### How does a SMTP protcol work ?
 
- ![](smtpexample.png)
+ ![](images/smtpexample.png)
 
 #### Description of the implementation
 
- ![](diagram.jpg)
+ ![](images/diagram.jpg)
 
 #### Output when you launch the programm in intelliJ
 
@@ -138,9 +138,9 @@ we added a log info for the example which show one by one what we are sending to
 
 #### On the mock mock server
 
-![](mockoutput.png)
+![](images/mockoutput.png)
 
 And if we click on the mail : 
 
-![](output1.png)
-![](rawoutput.png)
+![](images/output1.png)
+![](images/rawoutput.png)
