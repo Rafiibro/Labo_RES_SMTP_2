@@ -1,3 +1,3 @@
 #!/bin/bash
 
-docker run -i mock_mock_server
+docker run -it -p 2525:2525 -p 8282:8282 mock_mock_server

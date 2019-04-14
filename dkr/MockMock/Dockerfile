@@ -20,5 +20,5 @@ EXPOSE 8282
 #
 # This is the command that is executed when the Docker container starts
 #
-ENTRYPOINT java -jar /opt/app/mockmock.jar -p $MOCKMOCK_SMPT_PORT -h $MOCKMOCK_HTTP_PORT
-#CMD ["java", "-jar", "/opt/app/mockmock.jar", "-p", "2525", "-h", "8282"]
+#ENTRYPOINT java -jar /opt/app/mockmock.jar -p $MOCKMOCK_SMPT_PORT -h $MOCKMOCK_HTTP_PORT
+CMD ["java", "-jar", "/opt/app/mockmock.jar", "-p", "2525"]
